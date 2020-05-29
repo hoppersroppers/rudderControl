@@ -13,7 +13,7 @@ win = tk.Tk()
 a5 = PhotoImage(file="g1.png")
 win.tk.call('wm', 'iconphoto', win._w, a5)
 win.title("Demo Ship Tkinter")
-win.geometry("500x500+0+0")
+win.geometry("200x300+0+0")
 win.resizable(width=True, height=True)
 win.configure(bg='black')
 
@@ -85,7 +85,7 @@ p1 = gaugelib.DrawGauge2(
     size=200,
     bg_col='black',
     unit = "Rudder Angle",bg_sel = 2)
-p1.pack()
+p1.pack(side=LEFT)
 
 g_value=0
 p1.set_value(int(g_value))
