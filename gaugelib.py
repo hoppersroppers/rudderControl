@@ -53,7 +53,7 @@ class DrawGauge2(ini):
 
         self.max_value = float(max_value)
         self.min_value = float(min_value)
-        self.size = size
+        self.size = size*2
         self.bg_col = bg_col
         self.bg_sel=bg_sel
         self.unit = '' if not unit else unit
@@ -87,19 +87,19 @@ class DrawGauge2(ini):
     def draw_background2(self, divisions=100):
         self.canvas.create_arc(self.size/5, self.size/6, self.size-self.size/6, self.size-self.size/6,
                                style="arc",width=self.size/10,start=-61, extent=61,
-                               outline = "red")#style=tk.PIESLICE
+                               outline = "light green")#style=tk.PIESLICE
         self.canvas.create_arc(self.size/6, self.size/6, self.size-self.size/6, self.size-self.size/6,
                                width=self.size/10,style="arc", start=0, extent=60,
-                               outline = "orange")
+                               outline = "light green")
         self.canvas.create_arc(self.size/6, self.size/6, self.size-self.size/6, self.size-self.size/6,
                                width=self.size/10,style="arc",start=60, extent=60,
                                outline = "yellow")
         self.canvas.create_arc(self.size/6, self.size/6, self.size-self.size/6, self.size-self.size/6,
                                width=self.size/10,style="arc",start=120, extent=60,
-                               outline = "light green")
+                               outline = "red")
         self.canvas.create_arc(self.size/6, self.size/6, self.size-self.size/6, self.size-self.size/6,
                                width=self.size/10,style="arc",start=180, extent=60,
-                               outline = "green")
+                               outline = "red")
         self.readout = self.canvas.create_text(self.size/2,4*self.size/5, font=("Arial",int(self.size/18),'bold'),fill="white", text='')
         
     def draw_tick(self,divisions=100):
@@ -107,7 +107,7 @@ class DrawGauge2(ini):
         outer_tick_radius = int((self.size-self.size/9) * 0.45)
         label = self.unit
         self.canvas.create_text(self.size/2,2*self.size/5, font=("Arial",int(self.size/20)),fill="white", text=label,angle=0)
-        label = 'Ardiotech'
+        label = "Roppers"
         self.canvas.create_text(self.size/2,3*self.size/5, font=("Arial",int(self.size/18),'bold'),fill="light blue", text=label,angle=0)
         self.readout = self.canvas.create_text(self.size/2,4*self.size/5, font=("Arial",int(self.size/18),'bold'),fill="white", text='')
         inner_tick_radius2 = int((self.size-self.size/9) * 0.48)
@@ -118,7 +118,7 @@ class DrawGauge2(ini):
             angle_in_radians = (2.0 * cmath.pi / 3.0)+tick/divisions * (5.0 * cmath.pi / 3.0)
             inner_point = cmath.rect(inner_tick_radius, angle_in_radians)
             outer_point = cmath.rect(outer_tick_radius, angle_in_radians)
-            if (tick%10) == 0:
+            if (tick%7) == 0:
                 self.canvas.create_line(
                     *self.to_absolute(inner_point.real, inner_point.imag),
                     *self.to_absolute(outer_point.real, outer_point.imag),
@@ -130,7 +130,7 @@ class DrawGauge2(ini):
                     *self.to_absolute(inner_point3.real, inner_point3.imag),
                     *self.to_absolute(outer_point3.real, outer_point3.imag),
                     width=1,fill='black')
-            if (tick%10) == 0:
+            if (tick%7) == 0:
                 inner_point2 = cmath.rect(inner_tick_radius2, angle_in_radians)
                 outer_point2 = cmath.rect(outer_tick_radius2, angle_in_radians)
                 x= outer_point2.real + self.size/2
@@ -224,7 +224,7 @@ class DrawGauge3(ini):
             outer_point = cmath.rect(outer_tick_radius, angle_in_radians)
             
 
-            if (tick%10) == 0:
+            if (tick%14) == 0:
                 self.canvas.create_line(
                     *self.to_absolute(inner_point.real, inner_point.imag),
                     *self.to_absolute(outer_point.real, outer_point.imag),
@@ -236,7 +236,7 @@ class DrawGauge3(ini):
                     *self.to_absolute(inner_point3.real, inner_point3.imag),
                     *self.to_absolute(outer_point3.real, outer_point3.imag),
                     width=1,fill='light blue')
-            if (tick%10) == 0:
+            if (tick%14) == 0:
                 inner_point2 = cmath.rect(inner_tick_radius2, angle_in_radians)
                 outer_point2 = cmath.rect(outer_tick_radius2, angle_in_radians)
                 x= outer_point2.real + self.size/2
